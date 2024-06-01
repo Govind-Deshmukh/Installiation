@@ -43,6 +43,6 @@ sudo systemctl start jenkins
 sudo systemctl enable jenkins
 
 echo "Jenkins initial admin password:"
-sudo cat /var/jenkins_home/secrets/initialAdminPassword
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 print_section "Jenkins Installation Completed"
