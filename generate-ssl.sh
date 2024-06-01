@@ -27,12 +27,15 @@ server {
 EOF
 }
 
-read -p "Do you have nginx installed? (y/n) " nginx
+nginx -v
 
-if [ "$nginx" == "y" ]; then
+
+
+if [ "$?" == "y" ]; then
     print_section "Nginx is installed"
 else
     print_section "Nginx is not installed"
+    sudo apt install -y nginx
     exit 1
 fi
 
@@ -41,6 +44,7 @@ if [ "$certbot" == "y" ]; then
     print_section "Certbot is installed"
 else
     print_section "Certbot is not installed"
+    sudo snap install certbot --classic
     exit 1
 fi
 
