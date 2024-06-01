@@ -29,9 +29,7 @@ EOF
 
 nginx -v
 
-
-
-if [ "$?" == "y" ]; then
+if [ $? ]; then
     print_section "Nginx is installed"
 else
     print_section "Nginx is not installed"
