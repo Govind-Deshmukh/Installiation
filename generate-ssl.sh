@@ -52,14 +52,13 @@ fi
 
 echo ""
 echo "============================================================"
-echo "Is nginx config already configured ?"
+print_section "is nginx config already configured ?"
 read nginx_configured
 if [ "$nginx_configured" == "y" ]; then
-    print_section "is nginx config already configured ?"
     read -p "Enter your domain name: " domain
     read -p "Enter the port number for backend server: " backend_port
     create_nginx_config $domain $backend_port
-    sudo certbot certonly --nginx -d $domain    
+    sudo certbot --nginx -d $domain    
     print_section "Generate SSL Certificates"
     exit 1
 else
@@ -67,7 +66,7 @@ else
     read -p "Enter your domain name: " domain
     read -p "Enter the port number for backend server: " backend_port
     create_nginx_config $domain $backend_port
-    sudo certbot certonly --nginx -d $domain
+    sudo certbot --nginx -d $domain
     print_section "Generate SSL Certificates"
     exit 1
 fi
