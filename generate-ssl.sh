@@ -27,18 +27,17 @@ server {
 EOF
 }
 
-nginx -v
-
-if [ $? ]; then
-    print_section "Nginx is installed"
+nginx_version=$(nginx -v 2>&1)
+if [ $? -eq 0 ]; then
+    print_section "Nginx is installed: $nginx_version"
 else
     print_section "Nginx is not installed"
     sudo apt install -y nginx
     exit 1
 fi
 
-read -p "Do you have certbot installed? (y/n) " certbot
-if [ "$certbot" == "y" ]; then
+read -p "Do you have certbot installed? (y/n) " certbot_installed
+if [ "$certbot_installed" == "y" ]; then
     print_section "Certbot is installed"
 else
     print_section "Certbot is not installed"
@@ -47,7 +46,6 @@ else
 fi
 
 read -p "Is nginx already configured? (y/n) " nginx_configured
-
 if [ "$nginx_configured" == "y" ]; then
     print_section "Nginx is already configured"
 else
